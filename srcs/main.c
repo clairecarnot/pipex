@@ -6,7 +6,7 @@
 /*   By: ccarnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:07:28 by ccarnot           #+#    #+#             */
-/*   Updated: 2023/09/18 15:47:16 by ccarnot          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:00:21 by ccarnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[], char **environ)
 	pipex = NULL;
 	if (argc > 4)
 	{
-		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 			here_doc_main(pipex, argc, argv, environ);
 		pipex = pipex_init(argc, environ);
 		check_files(pipex, argv, argc);

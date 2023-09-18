@@ -6,7 +6,7 @@
 /*   By: ccarnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:00:25 by ccarnot           #+#    #+#             */
-/*   Updated: 2023/09/14 11:24:34 by ccarnot          ###   ########.fr       */
+/*   Updated: 2023/09/18 18:15:27 by ccarnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	parent_process(t_pipex *pipex)
 	j = 0;
 	while (j < pipex->cmd_nb)
 	{
-		err = waitpid(pipex->pidtab[j], &status, 0);
+		err = wait(NULL);
+		err = waitpid(pipex->pidtab[j], &status, WNOHANG);
 		if (err == -1)
 			ft_printf("pip19- no wait for process %d : %s\n", strerror(errno));
 		j++;

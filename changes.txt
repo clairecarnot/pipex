@@ -1,0 +1,8 @@
+1. Ajout O_TRUNC
+
+2. Correction comparaison:
+if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+to:
+if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+
+
