@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccarnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:45:35 by ccarnot           #+#    #+#             */
-/*   Updated: 2023/09/15 10:27:42 by ccarnot          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:50:54 by ccarnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void	heredoc_files(t_pipex *pipex, char **argv, int argc)
 			(perror("pip18- failed to create infile"), free(pipex), exit(1));
 		pipex->in_tmp = 1;
 	}
-	pipex->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND,
-			S_IRUSR | S_IWUSR);
+	pipex->out_fd = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT
+			| O_APPEND, S_IRUSR | S_IWUSR);
 	if (pipex->out_fd < 0)
 	{
 		perror("pip13- failed to open outfile");
-		pipex->out_fd = open("/tmp/outfile_tmp", O_WRONLY | O_CREAT | O_APPEND,
-				S_IRUSR | S_IWUSR);
+		pipex->out_fd = open("/tmp/outfile_tmp", O_WRONLY | O_TRUNC | O_CREAT
+				| O_APPEND, S_IRUSR | S_IWUSR);
 		if (pipex->out_fd < 0)
 		{
 			perror("pip22- failed to create outfile");

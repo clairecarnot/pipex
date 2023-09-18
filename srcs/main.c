@@ -6,7 +6,7 @@
 /*   By: ccarnot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:07:28 by ccarnot           #+#    #+#             */
-/*   Updated: 2023/09/15 12:15:07 by ccarnot          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:47:16 by ccarnot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ void	check_files(t_pipex *pipex, char **argv, int argc)
 			(perror("pip15- failed to create infile"), free(pipex), exit(1));
 		pipex->in_tmp = 1;
 	}
-	pipex->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	pipex->out_fd = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT,
+			S_IRUSR | S_IWUSR);
 	if (pipex->out_fd < 0)
 	{
 		perror("pip3- failed to open outfile");
-		pipex->out_fd = open("/tmp/outfile_tmp", O_WRONLY | O_CREAT,
+		pipex->out_fd = open("/tmp/outfile_tmp", O_WRONLY | O_TRUNC | O_CREAT,
 				S_IRUSR | S_IWUSR);
 		if (pipex->out_fd < 0)
 		{
-			perror("pip21- failed to create outfile");
-			close_if(&pipex->in_fd);
+			(perror("pip21- failed creating outfile"), close_if(&pipex->in_fd));
 			if (pipex->in_tmp)
 				unlink("/tmp/infile_tmp");
 			(free(pipex), exit(1));
